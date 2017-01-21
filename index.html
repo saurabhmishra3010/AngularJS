@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <title>Capgemini Events Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="CSS/bootstrap.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <script src="Scripts/events.portal.app.js"></script>
+    <script src="App/Events/Controllers/events.list.controller.js"></script>
+    <script src="App/Events/Controllers/register.events.controller.js"></script>
+    <script src="App/Shared/Controllers/home.controller.js"></script>
+    <script src="App/Shared/Controllers/contactus.controller.js"></script>
+    <script src="App/Events/Services/cache.data.service.js"></script>
+    <script src="App/Events/Filters/indian.currency.filter.js"></script>
+    <script src="App/Events/Filters/camel.case.filter.js"></script>
+</head>
+<body>
+    <div ng-include="'App/Shared/Partials/header.html'"></div>
+    <div ng-view></div>
+    <div ng-include="'App/Shared/Partials/footer.html'"></div>
+</body>
+</html>

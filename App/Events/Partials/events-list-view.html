@@ -1,0 +1,40 @@
+<div class="container">
+    <div id="dataDiv">
+        <h3 ng-bind="vm.pageTitle"></h3>
+        <form class="form-group" id="searchForm">
+            <label for="vm.searchText">Search by Event name : </label>
+            <input type="text" name="searchText" class="input-sm form-control" ng-model="vm.searchText"><br>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th><a ng-click="vm.sortFunction()">Event #</a></th>
+                    <th>Event Code</th>
+                    <th>Event Name</th>
+                    <th>Start Date</th>
+                    <th>Bookings</th>
+                    <th>Price</th>
+                    <th>Logo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="td in vm.eventDetails | filter : vm.searchText | orderBy : td.eventName : vm.sortOrder">
+                    <td>{{td.eventNumber}}</td>
+                    <td>{{td.eventCode | camelCase}}</td>
+                    <td>{{td.eventName}}</td>
+                    <td>{{td.startDate | date : 'medium'}}</td>
+                    <td>
+                        <div class="progress progress-striped active" ng-mouseover="vm.showBookings($event)" ng-mouseleave="vm.hideBookings($event)">
+                            <div class="progress-bar" ng-style="td.bookings">
+                                <span ng-show="td.showHideBookingsFlag">{{td.bookings.width}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{td.price | indianCurrency}}</td>
+                    <td><img ng-src="{{td.logo}}" height="20" width="20" alt="Logo"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a ng-click="vm.refreshView()">Refresh View</a>
+    </div>
+</div>
