@@ -1,0 +1,33 @@
+<div class="container" ng-init="vm.initialize()">
+    <div id="dataDiv">
+        <h3>Events List</h3>
+        <form class="form-group" id="searchForm">
+            <label for="vm.searchText">Search by Event name : </label>
+            <input type="text" name="searchText" class="input-sm form-control" ng-model="vm.searchText"><br>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th><a ng-click="vm.sortFunction()">Event #</a></th>
+                    <th>Event Code</th>
+                    <th>Event Name</th>
+                    <th>Start Date</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Register for event</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="td in vm.eventDetails | filter : vm.searchText | orderBy : td.eventName : vm.sortOrder">
+                    <td>{{td.eventNumber}}</td>
+                    <td>{{td.eventCode | camelCase}}</td>
+                    <td>{{td.eventName}}</td>
+                    <td>{{td.startDate | date : 'medium'}}</td>
+                    <td>{{td.price | indianCurrency}}</td>
+                    <td><a href="#eventdetails/{{td.eventNumber}}">More details</a></td>
+                    <td><button type="button" class="btn btn-success" ng-click="td.bookings=td.bookings+1" ng-disabled="(td.bookings>=100)">Register</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

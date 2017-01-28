@@ -1,0 +1,39 @@
+<div class="container" ng-init="vm.gotoEventDetails()">
+    <h3>Event details for {{vm.eventSelected.eventName}}</h3>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Event Number</th>
+            <td ng-bind="vm.eventSelected.eventNumber"></td>
+        </tr>
+        <tr>
+            <th>Event Code</th>
+            <td ng-bind="vm.eventSelected.eventCode"></td>
+        </tr>
+        <tr>
+            <th>Event Name</th>
+            <td ng-bind="vm.eventSelected.eventName"></td>
+        </tr>
+        <tr>
+            <th>Start Date</th>
+            <td ng-bind="vm.eventSelected.startDate"></td>
+        </tr>
+        <tr>
+            <th>Bookings</th>
+            <td>
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width: {{vm.eventSelected.bookings}}%" title="Bookings : {{vm.eventSelected.bookings}}"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td ng-bind="vm.eventSelected.price"></td>
+        </tr>
+        <tr>
+            <th>Logo</th>
+            <td><img ng-src="{{vm.eventSelected.logo}}" height="40" width="40"></td>
+        </tr>
+    </table>
+    <a href="#eventslist">Go back to events list</a>
+</div>
+

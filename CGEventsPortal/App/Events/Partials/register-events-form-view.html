@@ -1,0 +1,18 @@
+<div class="container">
+    <div id="applyForm">
+        <h3>Register Event</h3>
+        <form class="form-horizontal" id="registerForm">
+            <label for="inputEventNumber">Event Number : </label>
+            <input type="number" name="inputEventNumber" class="input-sm form-control" ng-model="vm.newEvent.eventNumber"><br>
+            <label for="inputEventCode">Event Code : </label>
+            <input type="text" name="inputEventCode" class="input-sm form-control" ng-model="vm.newEvent.eventCode"><br>
+            <label for="inputEventName">Event Name : </label>
+            <input type="text" name="inputEventName" class="input-sm form-control" ng-model="vm.newEvent.eventName"><br>
+            <label for="inputStartDate">Start Date : </label>
+            <input type="date" name="inputStartDate" class="input-sm form-control" ng-model="vm.newEvent.startDate"><br>
+            <label for="inputPrice">Price : </label>
+            <input type="number" name="inputPrice" class="input-sm form-control" ng-model="vm.newEvent.price"><br>
+            <button type="button" ng-click="vm.addNewEventController()" class="btn btn-success">Register Event</button>
+        </form>
+    </div>
+</div>
