@@ -1,18 +1,53 @@
 <div class="container">
     <div id="applyForm">
         <h3>Register Event</h3>
-        <form class="form-horizontal" id="registerForm">
+        <form class="form-horizontal" name="registerForm">
             <label for="inputEventNumber">Event Number : </label>
-            <input type="number" name="inputEventNumber" class="input-sm form-control" ng-model="vm.newEvent.eventNumber"><br>
+            <input type="number" name="inputEventNumber" class="input-sm form-control" ng-model="vm.newEvent.eventNumber" required >
+            <span 
+            ng-show="registerForm.inputEventNumber.$dirty && registerForm.inputEventNumber.$invalid" >
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Event number is mandatory
+            </div>
+            </span>
+            <br>
             <label for="inputEventCode">Event Code : </label>
-            <input type="text" name="inputEventCode" class="input-sm form-control" ng-model="vm.newEvent.eventCode"><br>
+            <input type="text" name="inputEventCode" class="input-sm form-control" ng-model="vm.newEvent.eventCode" required >
+            <span 
+            ng-show="registerForm.inputEventCode.$dirty && registerForm.inputEventCode.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Event code is mandatory
+            </div>
+            </span>
+            <br>
             <label for="inputEventName">Event Name : </label>
-            <input type="text" name="inputEventName" class="input-sm form-control" ng-model="vm.newEvent.eventName"><br>
+            <input type="text" name="inputEventName" class="input-sm form-control" ng-model="vm.newEvent.eventName" required >
+            <span 
+            ng-show="registerForm.inputEventName.$dirty && registerForm.inputEventName.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Event name is mandatory
+            </div>
+            </span>
+            <br>
             <label for="inputStartDate">Start Date : </label>
-            <input type="date" name="inputStartDate" class="input-sm form-control" ng-model="vm.newEvent.startDate"><br>
+            <input type="date" name="inputStartDate" class="input-sm form-control" ng-model="vm.newEvent.startDate" required >
+            <span 
+            ng-show="registerForm.inputStartDate.$dirty && registerForm.inputStartDate.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Date is mandatory
+            </div>
+            </span>
+            <br>
             <label for="inputPrice">Price : </label>
-            <input type="number" name="inputPrice" class="input-sm form-control" ng-model="vm.newEvent.price"><br>
-            <button type="button" ng-click="vm.addNewEventController()" class="btn btn-success">Register Event</button>
+            <input type="number" name="inputPrice" class="input-sm form-control" ng-model="vm.newEvent.price" required >
+            <span 
+            ng-show="registerForm.inputPrice.$dirty && registerForm.inputPrice.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Price is mandatory
+            </div>
+            </span>
+            <br>
+            <button type="button" ng-click="vm.addNewEventController()" class="btn btn-success" ng-disabled="registerForm.$invalid" title="Fill in the details to register">Register Event</button>
         </form>
     </div>
 </div>

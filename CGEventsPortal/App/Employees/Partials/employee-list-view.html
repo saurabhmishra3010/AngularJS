@@ -27,18 +27,53 @@
         </tbody>
     </table>
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" name="employeeform" id="employeeform">
         <legend>Employee Registration</legend>
         <label for="inputNumber" class="control-label">Employee Number</label>
-        <input type="number" class="form-control" id="inputNumber" ng-model="vm.newEmployee.employeeId">
+        <input type="number" class="form-control" name="inputNumber" ng-model="vm.newEmployee.employeeId" required >
+        <span 
+            ng-show="employeeform.inputNumber.$dirty && employeeform.inputNumber.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Employee number is mandatory
+            </div>
+        </span>
+        <br>
         <label for="inputName" class="control-label">Employee Name</label>
-        <input type="text" class="form-control" id="inputName" ng-model="vm.newEmployee.employeeName">
+        <input type="text" class="form-control" name="inputName" ng-model="vm.newEmployee.employeeName" required >
+        <span 
+            ng-show="employeeform.inputName.$dirty && employeeform.inputName.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Employee name is mandatory
+            </div>
+        </span>
+        <br>
         <label for="inputAddress" class="control-label">Employee Address</label>
-        <input type="text" class="form-control" id="inputAddress" ng-model="vm.newEmployee.address">
+        <input type="text" class="form-control" name="inputAddress" ng-model="vm.newEmployee.address" required >
+        <span 
+            ng-show="employeeform.inputAddress.$dirty && employeeform.inputAddress.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Addrss is mandatory
+            </div>
+        </span>
+        <br>
         <label for="inputPin" class="control-label">Zip Code</label>
-        <input type="text" class="form-control" id="inputPin" ng-model="vm.newEmployee.pin">
+        <input type="text" class="form-control" name="inputPin" ng-model="vm.newEmployee.pin" required >
+        <span 
+            ng-show="employeeform.inputPin.$dirty && employeeform.inputPin.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Zip code is mandatory
+            </div>
+        </span>
+        <br>
         <label for="inputPhone" class="control-label">Employee Phone Number</label>
-        <input type="number" class="form-control" id="inputPhone" ng-model="vm.newEmployee.phoneNumber">
-        <button type="button" class="btn btn-success" ng-click="vm.addNewEmployeeCtrl()" style="margin: 10px;">Register Employee</button>
+        <input type="number" class="form-control" name="inputPhone" ng-model="vm.newEmployee.phoneNumber" required >
+        <span 
+            ng-show="employeeform.inputPhone.$dirty && employeeform.inputPhone.$invalid" ><br>
+            <div class="alert alert-danger" style="margin: 10px;">
+                <strong>Error!</strong> Phone number is mandatory
+            </div>
+        </span>
+        <br>
+        <button type="button" class="btn btn-success" ng-click="vm.addNewEmployeeCtrl()" ng-disabled="employeeform.$invalid || employeeform.$pristine" style="margin: 10px;" title="Fill in the details to register">Register Employee</button>
     </form>
 </div>

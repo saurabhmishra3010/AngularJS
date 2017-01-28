@@ -2,9 +2,9 @@
     angular.module('app')
         .controller('EmployeeListController', EmployeeListController);
 
-    EmployeeListController.$inject = ['EmployeeListService', '$routeParams'];
+    EmployeeListController.$inject = ['$scope', 'EmployeeListService', '$routeParams', '$location', '$anchorScroll'];
 
-    function EmployeeListController(EmployeeListService, $routeParams) {
+    function EmployeeListController($scope, EmployeeListService, $routeParams, $location, $anchorScroll) {
         var vm = this;
         vm.initialize = initialize;
         vm.sortOrder = true;
@@ -24,6 +24,9 @@
 
         function addNewEmployeeCtrl() {
             EmployeeListService.addNewEmployee(vm.newEmployee);
+            $scope.employeeform.$setPristine();
+            $location.path('/employeelist');
+            $anchorScroll('top');
         }
 
         function changeOrder() {
