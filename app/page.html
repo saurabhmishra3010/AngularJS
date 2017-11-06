@@ -1,0 +1,277 @@
+<?php
+     $fbid = $_GET['userid'];   //read the score from the url
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <title>Looklikecard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="fb:app_id" content="698597133671520" />
+        <meta property="og:url" content="https://staging.sportsocial.in/page.html" >
+	<meta property="og:type" content="website">
+        <meta property="og:title" content="Which footballer do you look like?" >
+        <meta property="og:description" content="Find it out" >
+	<meta property="og:image" content="https://coldplayadmin.sportsocial.in/"<?= $score ?>".jpg" >
+	<meta property="og:image:type" content="image/jpg">
+        <meta property="og:image:width" content="1200" >
+        <meta property="og:image:height" content="630" >
+<script id="facebook-jssdk" src="//connect.facebook.net/en_US/sdk.js"></script>
+<style>
+.sharePage{
+	width:60%;
+	border:1px solid black;
+}
+.heading{
+	text-align:center;
+	background-color:yellow;
+	font-family:'Roboto',sans-serif;
+	font-weight:bolder;
+	font-size:2em;
+	
+}
+.sharePage div{
+	display:inline-block;
+	vertical-align:top;
+	width:30%;
+	margin:1%;
+	height:250px;
+	border:1px solid black
+}
+.sharePage div>p{
+	font-family:'Roboto',sans-serif;
+	font-size:2.5em;
+	font-weight:900;
+	text-align:center;
+}
+.share{
+	display:block;
+	width:50%;
+	margin:1% auto;
+}
+img{
+	width:100%;
+	height:80%;
+}
+h2{
+	text-align:center;
+	font-family:'Roboto',sans-serif;
+	font-size:1.8em;
+    border:1px solid black;
+    margin-top:0px;	
+}
+@media (max-width:1000px) and (min-width:850px) {
+    .sharePage{
+        width: 60%;
+    }
+	.sharePage div>p{
+		
+		font-size:2em;
+	}
+	.sharePage div{
+		height:200px;
+	}
+	h2{
+		font-size:1.6em;
+	}
+	.heading{
+		font-size:1.8em;
+	}
+}
+
+@media (max-width:850px) and (min-width:700px) {
+     .sharePage{
+        width: 70%;
+    }
+	.sharePage div>p{
+		
+		font-size:1.8em;
+	}
+	.sharePage div{
+		height:180px;
+	}
+	h2{
+		font-size:1.5em;
+	}
+	.heading{
+		font-size:1.7em;
+	}
+}
+@media (max-width:700px) and (min-width:540px) {
+    .sharePage{
+        width: 80%;
+    }
+	.sharePage div>p{
+		
+		font-size:1.6em;
+	}
+	.sharePage div{
+		height:170px;
+	}
+	h2{
+		font-size:1.4em;
+	}
+	.heading{
+		font-size:1.6em;
+	}
+}	
+@media (max-width:540px) and (min-width:430px){
+	.sharePage{
+        width: 100%;
+    }
+	.sharePage div>p{
+		
+		font-size:1.5em;
+	}
+	.sharePage div{
+		height:165px;
+	}
+	h2{
+		font-size:1.3em;
+	}
+	.heading{
+		font-size:1.4em;
+	}
+}
+@media (max-width:430px){
+	.sharePage{
+        width: 100%;
+    }
+	.sharePage div>p{
+		
+		font-size:1.3em;
+	}
+	.sharePage div{
+		height:160px;
+		margin:0.3%;
+	}
+	h2{
+		font-size:1.1em;
+	}
+	.heading{
+		font-size:1.3em;
+	}
+}
+</style>
+</head>
+<body>
+<script>
+var userfbid='123';
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '698597133671520',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+
+FB.AppEvents.logPageView();
+    // ADD ADDITIONAL FACEBOOK CODE HERE
+
+function onLogin(response) {
+
+  if (response.status == 'connected') {
+    FB.api('/me',{locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'}, function(response) {
+var picture=response.picture.data.url
+ document.getElementById("myImg").src=picture;
+ console.log(response.id);
+userfbid=response.id;
+ document.getElementById('name').innerHTML=response.first_name;
+var host = window.location.host;
+$.ajax({
+    url: 'https://coldplayadmin.sportsocial.in/user/getFootballerImage',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify({"fbid":response.id,"gender":response.gender,"name":response.first_name}),
+    processData: false,
+    success: function( data, textStatus, jQxhr ){
+        document.getElementById("ftimg").src=data.image;
+	document.getElementById("ftname").innerHTML=data.playername;
+    },
+    error: function( jqXhr, textStatus, errorThrown ){
+        console.log( errorThrown );
+    }
+});
+                 //     var welcomeBlock = document.getElementById('fb-welcome');
+      //welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+    });
+  }
+}
+
+FB.getLoginStatus(function(response) {
+  // Check login status on load, and if the user is
+  // already logged in, go directly to the welcome message.
+  if (response.status == 'connected') {
+    onLogin(response)
+    {
+
+    }
+  } else {
+    // Otherwise, show Login dialog first.
+    FB.login(function(response) {
+      onLogin(response)
+      {
+
+      };
+    }, {scope: 'user_friends, email'});
+  }
+});
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+           // Window.open('page.html');
+            getFbUserData();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
+
+function share() {
+FB.ui({
+  method: 'share',
+mobile_iframe: true,
+  href:'https://staging.sportsocial.in/page.html',
+picture:"https://coldplayadmin.sportsocial.in/"+userfbid+".jpg" 
+}, function(response) {
+  // Action after response
+});
+}
+</script>
+
+    <div class="sharePage">
+                <p class="heading"> Which Footballer do you look like?</p>
+                <div class="personImage">
+                        <img id="myImg" src="https://placehold.it/300x300">
+                        <h2 id="name"></h2>
+                </div>
+		<div>
+			<p>Similarity</p>
+			<p>90%</p>
+		</div>
+
+                <div class="celebrityImage">
+                        <img id="ftimg" src="https://placehold.it/300x300">
+<h2 id="ftname"></h2>
+
+</div>
+      <img src="https://coldplayadmin.sportsocial.in/images/share.png" class="share" role="button"  onclick="share()">
+        </div>
+</body>
+</html>
+
+

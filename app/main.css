@@ -1,0 +1,50 @@
+
+.lookLikeCard{
+    width:35%;
+	height:70%;
+    border: 1px solid black;
+	margin:auto;
+	
+}
+p{
+	text-align:center;
+	font-family:'Roboto',sans-serif;
+	font-weight:900;
+	
+}
+.imageHolder{
+	width:100%;
+	height:80%;
+	margin:1% auto;
+}
+.login{
+	display:block;
+	width:50%;
+	height:80%;
+	margin:2% auto;
+}
+.imageHolder  img{
+	width:100%;
+	height:100%;
+}
+@media (max-width:1000px) and (min-width:700px) {
+    .lookLikeCard{
+        width: 45%;
+    }
+}
+
+@media (max-width:700px) and (min-width:500px) {
+    .lookLikeCard{
+        width: 55%;
+    }
+}
+@media (max-width:500px) and (min-width:350px) {
+    .lookLikeCard{
+        width: 80%;
+    }
+}
+@media (max-width:350px){
+	.lookLikeCard{
+        width: 100%;
+    }
+}
