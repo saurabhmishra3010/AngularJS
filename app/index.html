@@ -1,0 +1,217 @@
+<!doctype html><html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="main.css">
+
+  <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="fb:app_id" content="275825912927485" />
+        <meta property="og:url" content="http://staging.sportsocial.in/" >
+        <meta property="og:type" content="article" >
+        <meta property="og:title" content="Which footballer do you look like?" >
+        <meta property="og:description" content="Find it out" >
+        <meta property="og:image" content="https://coldplayadmin.sportsocial.in/1584243164972830.jpg" >
+        <meta property="og:image:width" content="1200" >
+        <meta property="og:image:height" content="630" >
+
+  <title>Looklikecard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{
+	padding:0px;
+	margin:0px;
+}
+.lookLikeCard{
+    width:40%;
+	height:70%;
+    border: 1px solid #024771;
+	margin:auto;
+	font-family:'Roboto',sans-serif;
+}
+.heading{
+	display:inline-block;
+	width:65%;
+	vertical-align:middle;
+	text-align:center;
+	font-weight:700;
+	font-size:1.2em;
+	color:#024771;
+	
+}
+.logoHolder{
+	display:inline-block;
+	vertical-align:middle;
+	width:90px;
+	height:50px;
+	margin:1%;
+	
+}
+.logoHolder> img{
+	display:block;
+	margin:auto;
+	width:30px;
+	height:30px;
+	
+}
+.brandTitle{
+	text-align:center;
+	width:100%;
+	font-size:0.8em;
+	font-weight:700;
+	margin:2% auto;
+}
+.brandTitle >span:first-child{
+	color:#024771;
+}
+.brandTitle >span:last-child{
+	color:#ffa600;
+}
+.imageHolder{
+	width:100%;
+	height:80%;
+	margin:1% auto;
+}
+.login{
+	display:block;
+	width:50%;
+	height:80%;
+	margin:2% auto;
+}
+.imageHolder  img{
+	width:100%;
+	height:100%;
+}
+.lookLikeCard>p:last-child{
+	text-align:center;
+	font-weight:700;
+	color:#024771;
+	margin:1% auto;
+}
+@media (max-width:1000px) and (min-width:700px) {
+    .lookLikeCard{
+        width: 50%;
+    }
+	.heading{
+		font-size:0.95em;
+	}
+}
+
+@media (max-width:700px) and (min-width:500px) {
+    .lookLikeCard{
+        width: 68%;
+    }
+	.heading{
+		font-size:0.9em;
+	}
+}
+@media (max-width:500px) and (min-width:350px) {
+    .lookLikeCard{
+        width: 80%;
+    }
+	.heading{
+		font-size:0.85em;
+	}
+}
+@media (max-width:350px){
+	.lookLikeCard{
+        width: 100%;
+    }
+	.heading{
+		font-size:0.85em;
+	}
+}
+</style>
+
+</head>
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '275825912927485',
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+
+    // ADD ADDITIONAL FACEBOOK CODE HERE
+
+function onLogin(response) {
+
+  if (response.status == 'connected') {
+    FB.api('/me?fields=first_name', function(data) {
+        window.location="page.php?userid="+data.id;
+                      var welcomeBlock = document.getElementById('fb-welcome');
+      welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+    });
+  }
+}
+
+FB.getLoginStatus(function(response) {
+  // Check login status on load, and if the user is
+  // already logged in, go directly to the welcome message.
+  if (response.status == 'connected') {
+    onLogin(response)
+    {
+
+    }
+  } else {
+    // Otherwise, show Login dialog first.
+    FB.login(function(response) {
+      onLogin(response)
+      {
+
+      };
+    }, {scope: 'user_friends, email'});
+  }
+});
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+function fbLogin() {
+    FB.login(function (response) {
+        if (response.authResponse) {
+console.log('facebook logged in');
+onLogin(response);
+
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
+function onLogin(response) {
+
+  if (response.status == 'connected') {
+    FB.api('/me?fields=first_name', function(data) {
+        window.location="page.php?userid="+data.id;
+                      var welcomeBlock = document.getElementById('fb-welcome');
+      welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+    });
+  }
+}
+
+</script>
+
+    <div class="lookLikeCard">
+<div class="logoHolder">
+		<img src="https://coldplayadmin.sportsocial.in/images/Logo.png">
+		<p class="brandTitle">
+			<span>Sports</span>
+			<span>Social</span>
+		</p>
+	  </div>
+          <p class="heading"> Which Footballer do you look like?</p>
+          <div class="imageHolder">
+                <img src="https://coldplayadmin.sportsocial.in/images/celebrity.jpg">
+          </div>
+          <img  src="https://coldplayadmin.sportsocial.in/images/facebook-login.png" role="button" class="login" onclick="fbLogin()">
+    <p>Login with Facebook to find out ...</p>
+        </div>
+</body>
+</html>
+

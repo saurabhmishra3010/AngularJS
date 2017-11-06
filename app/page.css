@@ -1,0 +1,35 @@
+.sharePage{
+	width:70%;
+	height:90%;
+	border:1px solid black;
+}
+.heading{
+	text-align:center;
+	font-family:sans-serif;
+	font-weight:bolder;
+	
+}
+.personImage{
+	width:40%;
+	height:300px;
+	border:1px solid black;
+	margin-left:3%;
+	display:inline-block;
+	vertical-align:top;
+}
+.celebrityImage{
+	width:40%;
+	height:300px;
+	border:1px solid black;
+	display:inline-block;
+	margin-left:12%;
+	vertical-align:top;
+}
+button{
+	display:block;
+	margin:2% auto;
+}
+img{
+	width:100%;
+	height:100%;
+}
